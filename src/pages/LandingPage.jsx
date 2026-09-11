@@ -567,7 +567,7 @@ export default function LandingPage() {
   // All tickets that live in Human-in-The-Loop.
   // They are NOT in the agent_resolve tab initially — they move there only after resolution.
   const HITL_SOURCE_ITEMS = [
-    { id: "ar1", num: "INC0048219", service: "MyU Portal Auth", subject: "MyU Portal Login Issue", desc: "User unable to log in to MyU Portal. Authentication attempt failed.", resolution: "Browser Cache & Cookies Cleared — Login Validated", status: "Action Required", statusType: "warn", isDeterministic: true, actionLabel: "Agent Resolve" },
+    { id: "ar1", num: "INC0048219", service: "MyS Portal Auth", subject: "MyS Portal Login Issue", desc: "User unable to log in to MyS Portal. Authentication attempt failed.", resolution: "Browser Cache & Cookies Cleared — Login Validated", status: "Action Required", statusType: "warn", isDeterministic: true, actionLabel: "Agent Resolve" },
     { id: "ar2", num: "INC0047582", service: "Business Application", subject: "Business Application — Forgot Password", desc: "User forgot password for Business Application. Password expired, identity verification required.", resolution: "Temporary Password Issued & Login Validated", status: "Action Required", statusType: "warn", isDeterministic: true, actionLabel: "Agent Resolve" },
     { id: "ar3", num: "INC0049301", service: "Employee Benefits Portal", subject: "Application Not Launching — Employee Benefits Portal", desc: "Employee Benefits Portal is not launching. Service unavailable, restart and health check required.", resolution: "Service Restarted & Application Launch Verified", status: "Action Required", statusType: "warn", isDeterministic: true, actionLabel: "Agent Resolve" },
     { id: "arb1", num: "INC0046824", service: "Batch Scheduler", subject: "Batch Job Failure — Auto-Restart Required", desc: "Nightly batch job encountered an exception and stalled. AI auto-restart and lock clearance ready.", system: "Batch Scheduler", resolution: "Automated Batch Job Restart & Lock Clearance", status: "Action Required", statusType: "warn", isIgnio: true, actionLabel: "Auto Resolve", batchTag: "Batch Job Auto-Restart" },
@@ -814,7 +814,7 @@ export default function LandingPage() {
     let timer;
     if (deterministicIsRunning && deterministicModalOpen) {
       const stepCount = deterministicMessages.length;
-      const isVerificationFlow = deterministicItem?.id === "ar1" || deterministicItem?.service?.includes("Member Portal") || deterministicItem?.subject?.includes("Verification Code") || !deterministicItem?.id;
+      const isVerificationFlow = deterministicItem?.id === "ar1" || deterministicItem?.service?.includes("MyS Portal") || deterministicItem?.service?.includes("MyU Portal") || deterministicItem?.service?.includes("Member Portal") || deterministicItem?.subject?.includes("Verification Code") || !deterministicItem?.id;
       const isDobFlow = deterministicItem?.id === "ar2" || deterministicItem?.service?.includes("Registration") || deterministicItem?.subject?.includes("Date of Birth");
       const isAccountConflictFlow = deterministicItem?.id === "ar3" || deterministicItem?.service?.includes("Account Identity") || deterministicItem?.subject?.includes("Existing Account");
 
@@ -825,7 +825,7 @@ export default function LandingPage() {
         ]);
       };
 
-      // ── Flow 1: MyU Portal Login Troubleshooting ─────────────────────────
+      // ── Flow 1: MyS Portal Login Troubleshooting ─────────────────────────
       if (isVerificationFlow) {
         if (stepCount === 2) {
           setDeterministicAgentTyping(true);
@@ -837,7 +837,7 @@ export default function LandingPage() {
           setDeterministicAgentTyping(true);
           timer = setTimeout(() => {
             setDeterministicAgentTyping(false);
-            addMsg("agent", "Thanks. I've found your account and checked the authentication records.\n\nApplication: MyU Portal\nAccount Status: Active\nLatest Authentication Attempt: Failed\n\nLet's go through a few troubleshooting steps. Please clear your browser cache and let me know once completed.");
+            addMsg("agent", "Thanks. I've found your account and checked the authentication records.\n\nApplication: MyS Portal\nAccount Status: Active\nLatest Authentication Attempt: Failed\n\nLet's go through a few troubleshooting steps. Please clear your browser cache and let me know once completed.");
           }, 7000);
         } else if (stepCount === 6) {
           setDeterministicAgentTyping(true);
@@ -855,7 +855,7 @@ export default function LandingPage() {
           setDeterministicAgentTyping(true);
           timer = setTimeout(() => {
             setDeterministicAgentTyping(false);
-            addMsg("agent", "Perfect. Please try signing in to MyU Portal again using your credentials. Were you able to log in successfully?");
+            addMsg("agent", "Perfect. Please try signing in to MyS Portal again using your credentials. Were you able to log in successfully?");
           }, 7000);
         } else if (stepCount === 12) {
           setDeterministicAgentTyping(true);
@@ -3345,14 +3345,14 @@ export default function LandingPage() {
                 }}
                 title={
                   (selectedArea === "AI for AMS" || selectedRole === "Support Engineer")
-                    ? "Open AMS Nexus"
+                    ? "Open SEL AMS Nexus"
                     : "Open SEL Nexus Autonomous Pipeline"
                 }
               >
                 <Icon name="zap" size={18} />
                 <span>
                   {(selectedArea === "AI for AMS" || selectedRole === "Support Engineer")
-                    ? "AMS Nexus"
+                    ? "SEL AMS Nexus"
                     : "SEL Nexus"}
                 </span>
               </div>
@@ -3946,8 +3946,8 @@ export default function LandingPage() {
 
                 if (stepCount === 1) {
                   let suggestedText = "";
-                  if (deterministicItem?.id === "ar1" || deterministicItem?.service?.includes("MyU Portal") || deterministicItem?.subject?.includes("MyU Portal")) {
-                    suggestedText = "I cannot log in to MyU Portal.";
+                  if (deterministicItem?.id === "ar1" || deterministicItem?.service?.includes("MyS Portal") || deterministicItem?.service?.includes("MyU Portal") || deterministicItem?.subject?.includes("MyS Portal") || deterministicItem?.subject?.includes("MyU Portal")) {
+                    suggestedText = "I cannot log in to MyS Portal.";
                   } else if (deterministicItem?.id === "ar2" || deterministicItem?.service?.includes("Business Application") || deterministicItem?.subject?.includes("Business Application")) {
                     suggestedText = "I forgot my password for the Business Application.";
                   } else if (deterministicItem?.id === "ar3" || deterministicItem?.service?.includes("Employee Benefits") || deterministicItem?.subject?.includes("Application Not Launching")) {
