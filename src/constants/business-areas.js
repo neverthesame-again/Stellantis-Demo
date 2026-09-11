@@ -1,4 +1,6 @@
 // Central Configuration for Business Areas and Roles Mapping
+import { modernizationBusinessArea } from "../modernization";
+import { dataEngineeringBusinessArea } from "../data-engineering";
 
 export const BUSINESS_AREAS = [
   {
@@ -28,6 +30,8 @@ export const BUSINESS_AREAS = [
       { value: "SRE / NOC Lead", label: "SRE / NOC Lead" },
     ],
   },
+  modernizationBusinessArea,
+  dataEngineeringBusinessArea,
   {
     id: "ai-for-business",
     name: "AI for Business",
