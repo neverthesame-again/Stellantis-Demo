@@ -191,7 +191,7 @@ function formatMarkdownText(text) {
     .replace(/###\s*.*Document Download/gi, "")
     .replace(/\[.*Download PRD \(\.docx\)\]\(#download-prd\)/gi, "")
     .replace(/###\s*.*Automation Pipeline/gi, "")
-    .replace(/.*https:\/\/mnnb9bbkgu\.ap-south-1\.awsapprunner\.com\/agents\/automation.*/gi, "");
+    .replace(/.*https:\/\/(?:mnnb9bbkgu\.ap-south-1\.awsapprunner\.com|sel-nexus\.com)\/agents\/automation.*/gi, "");
 
   // If marked.js is available on window, use it
   if (typeof window !== "undefined" && window.marked && typeof window.marked.parse === "function") {
