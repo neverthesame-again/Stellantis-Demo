@@ -348,7 +348,7 @@ export default function DataEngineeringPage({
               gap: "16px",
             }}
           >
-            {currentTabData.items.map((item, idx) => (
+            {(currentTabData.items || []).map((item, idx) => (
               <div
                 key={item.id || idx}
                 style={{

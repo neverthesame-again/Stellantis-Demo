@@ -171,6 +171,7 @@ export const dataEngineeringMockData = {
     tabs: [
       { id: "overview", label: "Overview", active: true },
       { id: "data_models", label: "Data Models & Schemas", badge: 8 },
+      { id: "agentic_execution", label: "Agentic Execution" },
       { id: "governance", label: "Governance & Lineage", badge: 4 },
       { id: "cost_analytics", label: "Compute & Cost", badge: 3 },
     ],
@@ -265,6 +266,11 @@ export const dataEngineeringMockData = {
           { id: "dm1", code: "MOD-GOLD-01", name: "Customer 360 Star Schema", status: "Production", statusType: "good", desc: "Gold layer dimensional model connecting accounts, vehicle telematics, and service orders", target: "Iceberg / Snowflake", checks: "100% Certified" },
           { id: "dm2", code: "MOD-SLV-02", name: "Vehicle Telemetry Event Model", status: "Production", statusType: "good", desc: "Silver layer cleaned sensor readings with time-series optimization", target: "Delta Lake / Databricks", checks: "100% Certified" },
         ],
+      },
+      agentic_execution: {
+        title: "Agentic Execution",
+        sub: "Autonomous multi-agent execution desk for data pipeline orchestration, schema migrations, and real-time governance actions.",
+        items: [],
       },
       governance: {
         title: "Data Lineage & Governance Telemetry",
