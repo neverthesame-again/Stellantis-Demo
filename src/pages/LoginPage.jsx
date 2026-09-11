@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { supabase } from '../lib/supabase';
 import { BUSINESS_AREAS, getRolesForBusinessArea } from "../constants/business-areas";
+import { modernizationFeatureInfo } from "../modernization";
+import { dataEngineeringFeatureInfo } from "../data-engineering";
 import { isSuperAdminEmail } from "../constants/admin-emails";
 import { validateTCSEmail, authService } from "../services/auth.service";
 
@@ -183,6 +185,14 @@ export default function LoginPage() {
           <div className="login-feature">
             <div className="login-feature-icon">📊</div>
             <div className="login-feature-text">AI for Infra: Intelligence for Infra Engineer, SRE Lead & NOC Lead.</div>
+          </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{modernizationFeatureInfo.icon}</div>
+            <div className="login-feature-text">{modernizationFeatureInfo.sentences}</div>
+          </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{dataEngineeringFeatureInfo.icon}</div>
+            <div className="login-feature-text">{dataEngineeringFeatureInfo.sentences}</div>
           </div>
         </div>
         <div className="login-right">

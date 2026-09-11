@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { authService } from "../services/auth.service";
 import { supabase } from "../lib/supabase";
+import { getRolesForBusinessArea } from "../constants/business-areas";
 
 const AuthContext = createContext(null);
 
@@ -103,12 +104,35 @@ export const AuthProvider = ({ children }) => {
     return currentUser;
   };
 
+  const updateActiveContext = (businessArea, role) => {
+    if (businessArea) localStorage.setItem("active_business_area", businessArea);
+    if (role) localStorage.setItem("active_role", role);
+    const targetArea = businessArea || localStorage.getItem("active_business_area") || "AI for AD";
+    const areaRoles = getRolesForBusinessArea(targetArea).map((r) => r.value);
+    setUser((prev) => {
+      if (!prev) {
+        return {
+          activeBusinessArea: businessArea || targetArea,
+          activeRole: role || "AI Architect",
+          activeAreaRoles: areaRoles,
+        };
+      }
+      return {
+        ...prev,
+        activeBusinessArea: businessArea || prev.activeBusinessArea,
+        activeRole: role || prev.activeRole,
+        activeAreaRoles: areaRoles,
+      };
+    });
+  };
+
   const value = {
     user,
     login,
     register,
     logout,
     refreshUser,
+    updateActiveContext,
     isAuthenticated: !!user,
     loading,
     loggingOut,
