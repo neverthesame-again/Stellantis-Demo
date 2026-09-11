@@ -686,8 +686,8 @@ export const roleMockData = {
           title: "AMS Insights Workspace",
           sub: "Analytics, intelligence & AI insights desk",
           items: [
-            { id: "app1", title: "MyUnum for Clients", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for MyUnum for Clients." },
-            { id: "app2", title: "MyUnum for Members", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for MyUnum for Members." },
+            { id: "app1", title: "Stellantis Client Portal", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for Stellantis Client Portal." },
+            { id: "app2", title: "Stellantis Member Portal", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for Stellantis Member Portal." },
             { id: "app3", title: "NaviLink", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for NaviLink." },
             { id: "app4", title: "CLA Consumer", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for CLA Consumer." },
             { id: "app5", title: "Trusted Info Layer", category: "Application Health", status: "Slow", statusType: "warn", desc: "Click to view health metrics and graphs for Trusted Info Layer." },
@@ -787,8 +787,8 @@ export const roleMockData = {
           title: "Software Engineering Insights Workspace",
           sub: "Engineering intelligence & hotfix performance desk",
           items: [
-            { id: "app1", title: "MyUnum for Clients", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for MyUnum for Clients." },
-            { id: "app2", title: "MyUnum for Members", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for MyUnum for Members." },
+            { id: "app1", title: "Stellantis Client Portal", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for Stellantis Client Portal." },
+            { id: "app2", title: "Stellantis Member Portal", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for Stellantis Member Portal." },
             { id: "app3", title: "NaviLink", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for NaviLink." },
             { id: "app4", title: "CLA Consumer", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for CLA Consumer." },
             { id: "app5", title: "Trusted Info Layer", category: "Application Health", status: "Slow", statusType: "warn", desc: "Click to view health metrics and graphs for Trusted Info Layer." },
@@ -889,8 +889,8 @@ export const roleMockData = {
           title: "L1 Support Insights Workspace",
           sub: "First-line ticket trends, KB article hit rates & triage automation metrics",
           items: [
-            { id: "app1", title: "MyUnum for Clients", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for MyUnum for Clients." },
-            { id: "app2", title: "MyUnum for Members", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for MyUnum for Members." },
+            { id: "app1", title: "Stellantis Client Portal", category: "Application Health", status: "Down", statusType: "danger", desc: "Click to view health metrics and graphs for Stellantis Client Portal." },
+            { id: "app2", title: "Stellantis Member Portal", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for Stellantis Member Portal." },
             { id: "app3", title: "NaviLink", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for NaviLink." },
             { id: "app4", title: "CLA Consumer", category: "Application Health", status: "Good", statusType: "good", desc: "Click to view health metrics and graphs for CLA Consumer." },
             { id: "app5", title: "Trusted Info Layer", category: "Application Health", status: "Slow", statusType: "warn", desc: "Click to view health metrics and graphs for Trusted Info Layer." },
@@ -1431,7 +1431,7 @@ export const roleMockData = {
     "Infra Engineer": {
       topbar: {
         title: "AI for Infra · Infra Engineer Assist",
-        subtitle: "Incident Management, SLA Watch, Capacity & Patch Compliance · UNUM Infrastructure",
+        subtitle: "Incident Management, SLA Watch, Capacity & Patch Compliance · Stellantis Infrastructure",
         platform: "Infra-NOC",
         shift: "Night Shift 19:00–07:00 | AI Agent Mesh · Active",
         shiftProgress: "61%",

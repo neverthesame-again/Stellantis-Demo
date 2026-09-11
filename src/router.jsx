@@ -16,6 +16,8 @@ import { AccessGuardRoute } from "./components/AccessGuardRoute";
 import { useAuth } from "./context/AuthContext";
 
 import TCSDashboardPage from "./pages/TCSDashboardPage";
+import { ModernizationPage } from "./modernization";
+import { DataEngineeringPage } from "./data-engineering";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -180,6 +182,26 @@ export const router = createBrowserRouter([
           <ProtectedRoute>
             <AccessGuardRoute>
               <TCSDashboardPage />
+            </AccessGuardRoute>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "modernization",
+        element: (
+          <ProtectedRoute>
+            <AccessGuardRoute>
+              <ModernizationPage />
+            </AccessGuardRoute>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "data-engineering",
+        element: (
+          <ProtectedRoute>
+            <AccessGuardRoute>
+              <DataEngineeringPage />
             </AccessGuardRoute>
           </ProtectedRoute>
         ),

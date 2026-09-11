@@ -33,6 +33,22 @@ const ROLE_SUGGESTIONS = {
     "Are there any flaky tests that need fixing?",
     "What are the API coverage gaps?",
   ],
+  "AI Architect": [
+    "What is the status of monolith service decomposition and wave 2 cloud migration?",
+    "Which target microservices have critical risk factors or latency degradation?",
+  ],
+  "Modernization Engineer": [
+    "What is the current progress and pass rate on container builds and refactored APIs?",
+    "Which services require immediate AST automated refactoring or CVE remediation?",
+  ],
+  "Data Architect": [
+    "What is the federated latency and governance compliance across our data mesh?",
+    "Are there any active schema drift alerts or data pipeline SLA bottlenecks?",
+  ],
+  "Data Scientist": [
+    "What is the drift status across our production ML inference models?",
+    "Which distributed training pipeline jobs are currently running or failing?",
+  ],
 };
 
 // Fallback for unknown roles
@@ -119,7 +135,7 @@ function toGeminiHistory(messages) {
  *   selectedRole {string}  – the active AD role from LandingPage
  *   data         {object}  – the live role data object from LandingPage (dynamic)
  */
-export function AdRoleBotWidget({ selectedRole, data, onOpenChange, hideFloat = false }) {
+export function AdRoleBotWidget({ selectedRole, data, domain, onOpenChange, hideFloat = false }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = (state) => {
@@ -229,7 +245,7 @@ export function AdRoleBotWidget({ selectedRole, data, onOpenChange, hideFloat = 
 
   // ── Render ───────────────────────────────────────────────────────────────────
 
-  const roleLabel = selectedRole || "AD";
+  const roleLabel = selectedRole || (domain ? `${domain}` : "AI");
   const isConfigured =
     typeof import.meta !== "undefined" &&
     import.meta.env?.VITE_GEMINI_API_KEY &&

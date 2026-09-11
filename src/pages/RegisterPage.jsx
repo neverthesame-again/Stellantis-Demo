@@ -4,16 +4,17 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 
 import { BUSINESS_AREAS, getRolesForBusinessArea } from "../constants/business-areas";
+import { modernizationFeatureInfo } from "../modernization";
+import { dataEngineeringFeatureInfo } from "../data-engineering";
 
 // Fixed order for roles
-const ALL_ROLES = [
-  { value: "Product Owner", label: "Product Owner", domain: "AI for AD" },
-  { value: "Developer", label: "Developer", domain: "AI for AD" },
-  { value: "Support Engineer", label: "Support Engineer", domain: "AI for AMS" },
-  { value: "Software Engineer", label: "Software Engineer", domain: "AI for AMS" },
-  { value: "Infra Engineer", label: "Infra Engineer", domain: "AI for Infra" },
-  { value: "SRE / NOC Lead", label: "SRE / NOC Lead", domain: "AI for Infra" },
-];
+const ALL_ROLES = BUSINESS_AREAS.flatMap((area) =>
+  (area.roles || []).map((r) => ({
+    value: r.value,
+    label: r.label,
+    domain: area.name,
+  }))
+);
 
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
@@ -183,7 +184,7 @@ export default function RegisterPage() {
       
       <div className="login-split">
         <div className="login-left">
-          <div className="login-badge">UNUM AI Platform</div>
+          <div className="login-badge">Stellantis AI Platform</div>
           <h2>Create Your Account</h2>
           <p>
             Get started with role-based enterprise AI designed for innovation. Select your domain and role to unlock dedicated AI agents and project workspaces
@@ -202,9 +203,17 @@ export default function RegisterPage() {
             <div className="login-feature-icon">📊</div>
             <div className="login-feature-text">AI for Infra: Intelligence for Infra Engineer, SRE Lead & NOC Lead</div>
           </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{modernizationFeatureInfo.icon}</div>
+            <div className="login-feature-text">{modernizationFeatureInfo.sentences}</div>
+          </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{dataEngineeringFeatureInfo.icon}</div>
+            <div className="login-feature-text">{dataEngineeringFeatureInfo.sentences}</div>
+          </div>
         </div>
         <div className="login-right">
-          <h3>UNUM AI Platform</h3>
+          <h3>Stellantis AI Platform</h3>
           <p className="login-subtitle">Create your account</p>
 
           <form onSubmit={handleSubmit}>

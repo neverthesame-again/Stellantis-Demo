@@ -9,6 +9,8 @@ import { BUSINESS_AREAS, getRolesForBusinessArea } from "../constants/business-a
 import { Footer } from "../components/Footer";
 import { Chatbot } from "../components/chatbot";
 import InfraPage from "./InfraPage";
+import { ModernizationPage } from "../modernization";
+import { DataEngineeringPage } from "../data-engineering";
 import { AdRoleBotWidget } from "../components/AdRoleBotWidget";
 import { UnifiedBotWidget } from "../components/UnifiedBotWidget";
 import { useToast } from "../components/Toast";
@@ -57,7 +59,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "Product catalog; master data platform",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Duplicate product records",
@@ -76,7 +78,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "Product catalog; ERP",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Stale product documentation",
@@ -95,7 +97,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "SharePoint; product knowledge base",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Product launch checklist gaps",
@@ -114,7 +116,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "SharePoint; Planner; Teams",
     "Human Review Required": "FALSE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Product feedback not categorized",
@@ -133,7 +135,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CRM; survey platform; product backlog",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Release notes assembly",
@@ -152,7 +154,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "Azure DevOps; SharePoint",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Unassigned inbound leads",
@@ -171,7 +173,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CRM; territory data; Teams",
     "Human Review Required": "FALSE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Stalled sales opportunities",
@@ -190,7 +192,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CRM; Outlook; Planner",
     "Human Review Required": "FALSE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Quote approval delays",
@@ -209,7 +211,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CPQ; SharePoint Approvals; Teams",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "CRM contact data incomplete",
@@ -228,7 +230,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CRM; enrichment provider",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Meeting follow-up tasks not created",
@@ -247,7 +249,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "Teams; Outlook; Planner; CRM",
     "Human Review Required": "TRUE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   },
   {
     "Issue or Task Summary": "Weekly pipeline summary preparation",
@@ -266,7 +268,7 @@ const AUTOMATION_DATA = [
     "Systems or Data Sources": "CRM; SharePoint; Teams",
     "Human Review Required": "FALSE",
     "Item Type": "Item",
-    "Path": "sites/UNUMLargeDeal/Lists/Product and Sales Automation Grid"
+    "Path": "sites/StellantisDeal/Lists/Product and Sales Automation Grid"
   }
 ];
 
@@ -548,7 +550,7 @@ function AutomationDataGrid() {
 
 export default function LandingPage() {
 
-  const { user } = useAuth();
+  const { user, updateActiveContext } = useAuth();
   const { showToast } = useToast();
   const [data, setData] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");
@@ -1046,6 +1048,14 @@ export default function LandingPage() {
 
   // Fetch role-specific mock data whenever Domain or Role context changes
   useEffect(() => {
+    if (
+      selectedArea === "AI for Modernization" ||
+      selectedArea === "AI for Data Engineering" ||
+      selectedArea === "AI for Infra"
+    ) {
+      setLoading(false);
+      return;
+    }
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -1079,11 +1089,9 @@ export default function LandingPage() {
       r => user?.isSuperAdmin || (user?.roles || []).includes(r.value)
     );
 
-    if (availableRoles && availableRoles.length > 0) {
-      setSelectedRole(availableRoles[0].value);
-    } else {
-      setSelectedRole("");
-    }
+    const nextRole = (availableRoles && availableRoles.length > 0) ? availableRoles[0].value : "";
+    setSelectedRole(nextRole);
+    if (updateActiveContext) updateActiveContext(newArea, nextRole);
   };
 
   const handleTabClick = (tabId) => {
@@ -1282,6 +1290,34 @@ export default function LandingPage() {
     fetchWorkspaces();
   }, []);
 
+  if (selectedArea === "AI for Modernization") {
+    return (
+      <ModernizationPage
+        user={user}
+        selectedRole={selectedRole}
+        onRoleChange={(newRole) => {
+          setSelectedRole(newRole);
+          if (updateActiveContext) updateActiveContext(selectedArea, newRole);
+        }}
+        onAreaChange={handleAreaChange}
+      />
+    );
+  }
+
+  if (selectedArea === "AI for Data Engineering") {
+    return (
+      <DataEngineeringPage
+        user={user}
+        selectedRole={selectedRole}
+        onRoleChange={(newRole) => {
+          setSelectedRole(newRole);
+          if (updateActiveContext) updateActiveContext(selectedArea, newRole);
+        }}
+        onAreaChange={handleAreaChange}
+      />
+    );
+  }
+
   if (loading || !data) {
     return (
       <div className="dashboard-loading">
@@ -1381,30 +1417,35 @@ export default function LandingPage() {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        {selectedArea !== "AI for AMS" && (
-          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <label style={{ fontSize: "12px", fontWeight: "600", color: "var(--text-muted)" }}>
-              Domain:
-            </label>
-            <div
-              style={{
-                background: "var(--surface-input)",
-                color: "var(--text-primary)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                padding: "6px 12px",
-                fontSize: "12px",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                cursor: "default",
-                opacity: 0.9,
-              }}
-            >
-              {selectedArea}
-            </div>
-          </div>
-        )}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <label style={{ fontSize: "12px", fontWeight: "600", color: "var(--text-muted)" }}>
+            Domain:
+          </label>
+          <select
+            value={selectedArea}
+            onChange={(e) => handleAreaChange(e.target.value)}
+            style={{
+              background: "var(--surface-input)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border)",
+              borderRadius: "8px",
+              padding: "6px 12px",
+              fontSize: "12px",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            {BUSINESS_AREAS.filter(a => a.status !== "coming_soon").map((area) => (
+              <option
+                key={area.id}
+                value={area.name}
+                style={{ background: "var(--surface-select-option)", color: "var(--text-primary)" }}
+              >
+                {area.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {selectedArea === "AI for AMS" && (
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -1446,7 +1487,14 @@ export default function LandingPage() {
           <label style={{ fontSize: "12px", fontWeight: "600", color: "var(--text-muted)" }}>
             Role:
           </label>
-          <div
+          <select
+            value={selectedRole}
+            onChange={(e) => {
+              const newRole = e.target.value;
+              setSelectedRole(newRole);
+              if (updateActiveContext) updateActiveContext(selectedArea, newRole);
+              sessionStorage.removeItem("landing_active_tab");
+            }}
             style={{
               background: "var(--surface-input)",
               color: "var(--text-primary)",
@@ -1455,14 +1503,19 @@ export default function LandingPage() {
               padding: "6px 12px",
               fontSize: "12px",
               fontWeight: "600",
-              display: "flex",
-              alignItems: "center",
-              cursor: "default",
-              opacity: 0.9,
+              cursor: "pointer",
             }}
           >
-            {selectedRole}
-          </div>
+            {getRolesForBusinessArea(selectedArea).map((r) => (
+              <option
+                key={r.value}
+                value={r.value}
+                style={{ background: "var(--surface-select-option)", color: "var(--text-primary)" }}
+              >
+                {r.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>

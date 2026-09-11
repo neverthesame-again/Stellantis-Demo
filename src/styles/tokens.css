@@ -208,9 +208,9 @@
   /* recessed panel, foot of page gradient  */
 
   --blue: #002d54;
-  /* deepest unum navy — headings, text     */
+  /* deepest brand navy — headings, text     */
   --blue2: #004b87;
-  /* UNUM logo brand blue — primary buttons */
+  /* brand blue — primary buttons            */
   --blue3: #005fa8;
   /* accent lifted — hover on solid blue    */
   --blue4: #003b6d;
@@ -218,7 +218,7 @@
   --blue5: #002544;
   /* chip / pill navy                       */
   --cyan: #004b87;
-  /* UNUM blue                              */
+  /* brand blue                              */
   --cyan2: #005fa8;
   --gold: #f2aa22;
   /* index --warning                        */

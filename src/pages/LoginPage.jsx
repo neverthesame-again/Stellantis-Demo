@@ -4,12 +4,14 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { supabase } from '../lib/supabase';
 import { BUSINESS_AREAS, getRolesForBusinessArea } from "../constants/business-areas";
+import { modernizationFeatureInfo } from "../modernization";
+import { dataEngineeringFeatureInfo } from "../data-engineering";
 import { isSuperAdminEmail } from "../constants/admin-emails";
 import { validateTCSEmail, authService } from "../services/auth.service";
 
 const content = {
   form: {
-    title: "UNUM AI Platform",
+    title: "Stellantis AI Platform",
     subtitle: "Sign in using your tcs credentials",
     emailLabel: "Email Address",
     emailPlaceholder: "your.name@tcs.com",
@@ -165,10 +167,10 @@ export default function LoginPage() {
       
       <div className="login-split">
         <div className="login-left">
-          <div className="login-badge">UNUM AI Platform</div>
+          <div className="login-badge">Stellantis AI Platform</div>
           <h2>Welcome to the Future of Enterprise AI</h2>
           <p>
-            Sign in to access personalized AI workspaces and co-pilots tailored for your domain and role across UNUM Enterprise AI.
+            Sign in to access personalized AI workspaces and co-pilots tailored for your domain and role across Stellantis AI Platform.
           </p>
           <div className="login-feature">
             <div className="login-feature-icon">💻</div>
@@ -183,6 +185,14 @@ export default function LoginPage() {
           <div className="login-feature">
             <div className="login-feature-icon">📊</div>
             <div className="login-feature-text">AI for Infra: Intelligence for Infra Engineer, SRE Lead & NOC Lead.</div>
+          </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{modernizationFeatureInfo.icon}</div>
+            <div className="login-feature-text">{modernizationFeatureInfo.sentences}</div>
+          </div>
+          <div className="login-feature">
+            <div className="login-feature-icon">{dataEngineeringFeatureInfo.icon}</div>
+            <div className="login-feature-text">{dataEngineeringFeatureInfo.sentences}</div>
           </div>
         </div>
         <div className="login-right">
