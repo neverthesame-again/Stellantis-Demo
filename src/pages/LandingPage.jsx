@@ -1446,54 +1446,23 @@ export default function LandingPage() {
           <label style={{ fontSize: "12px", fontWeight: "600", color: "var(--text-muted)" }}>
             Role:
           </label>
-          {getRolesForBusinessArea(selectedArea)?.length > 0 ? (
-            <select
-              value={selectedRole}
-              onChange={(e) => {
-                const val = e.target.value;
-                setSelectedRole(val);
-                sessionStorage.setItem("landing_selected_role", val);
-              }}
-              style={{
-                background: "var(--surface-input)",
-                color: "var(--text-primary)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                padding: "6px 12px",
-                fontSize: "12px",
-                fontWeight: "600",
-                cursor: "pointer",
-              }}
-            >
-              {getRolesForBusinessArea(selectedArea).map((r) => (
-                <option
-                  key={r.value}
-                  value={r.value}
-                  style={{ background: "var(--surface-select-option)", color: "var(--text-primary)" }}
-                >
-                  {r.label}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <div
-              style={{
-                background: "var(--surface-input)",
-                color: "var(--text-primary)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                padding: "6px 12px",
-                fontSize: "12px",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                cursor: "default",
-                opacity: 0.9,
-              }}
-            >
-              {selectedRole}
-            </div>
-          )}
+          <div
+            style={{
+              background: "var(--surface-input)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border)",
+              borderRadius: "8px",
+              padding: "6px 12px",
+              fontSize: "12px",
+              fontWeight: "600",
+              display: "flex",
+              alignItems: "center",
+              cursor: "default",
+              opacity: 0.9,
+            }}
+          >
+            {selectedRole}
+          </div>
         </div>
       </div>
     </div>
