@@ -9,12 +9,12 @@ const GEMINI_PRIMARY_URL =
 const GEMINI_FALLBACK_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent";
 
-// ─── Role-Specific Fixed System Prompts ──────────────────────────────────────
+// â”€â”€â”€ Role-Specific Fixed System Prompts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Each role gets a tailored persona, scope, and guidance instruction.
 // The live dashboard data is appended at runtime.
 
 const ROLE_SYSTEM_PROMPTS = {
-  // ── AI for AD Roles ──────────────────────────────────────────────────────
+  // â”€â”€ AI for AD Roles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   Admin: `You are the AD Domain Admin AI Assistant embedded in the Stellantis AI Hub dashboard.
 You are assisting an AD Domain Administrator who oversees enterprise pipeline orchestration, agent mesh telemetry, security audits, and access governance.
@@ -29,7 +29,7 @@ Your dashboard sections include:
 - TAB: SECURITY, CVE AUDITS & ROLE COMPLIANCE: CVE codes, HIPAA audit checks, RBAC escalation reviews
 - TAB: AGENTIC MESH TELEMETRY & RESOURCE QUOTAS: agent names, token usage, throughput, latency, success rates
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -49,7 +49,7 @@ Your dashboard sections include:
 - TAB: USER STORY BACKLOG & AI ENRICHMENT: story codes, points, priorities, acceptance criteria statuses
 - TAB: BDD ACCEPTANCE CRITERIA WORKBENCH: Given-When-Then criteria for each story, verification status
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -69,7 +69,7 @@ Your dashboard sections include:
 - TAB: SONARQUBE & STATIC CODE ANALYSIS: tech debt, code duplication %, security hotspots, coverage
 - TAB: AI UNIT TEST SYNTHESIZER: test modules, test counts, coverage %, pass/fail status, code snippets
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -89,14 +89,14 @@ Your dashboard sections include:
 - TAB: AUTO-LOGGED REGRESSION DEFECTS: defect codes, titles, severity, components, status, auto-fix actions
 - TAB: API ENDPOINT & BUSINESS SCENARIO COVERAGE: coverage areas, endpoints covered, scenario coverage %, gaps
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
 4. Address the user as "Tester" or "QA Engineer".
 5. Be concise and structured. Use bullet points when listing items. Never invent test counts, defect IDs, or coverage percentages not present in the dashboard.`,
 
-  // ── AI for AMS Roles ─────────────────────────────────────────────────────
+  // â”€â”€ AI for AMS Roles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   "Support Engineer": `You are the AMS Support Engineer AI Assistant embedded in the Stellantis AI Hub dashboard.
 You are assisting a Support Engineer handling incoming tickets, automated resolutions, triage decisions, and SLA monitoring for the AMS operations desk.
@@ -111,7 +111,7 @@ Your dashboard sections include:
 - TAB: AMS VULNERABILITIES & SECURITY FINDINGS: CVE codes, categories, confidence levels, statuses
 - TAB: AMS INSIGHTS WORKSPACE: pattern analysis, automation ROI insights, performance telemetry
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -132,7 +132,7 @@ Your dashboard sections include:
 - TAB: ARCHITECTURE & SYSTEM DESIGN REVIEWS: architecture proposals, approval status
 - TAB: SOFTWARE ENGINEERING INSIGHTS WORKSPACE: velocity metrics, patch reliability, DB tuning telemetry
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -152,7 +152,7 @@ Your dashboard sections include:
 - TAB: AMS VULNERABILITIES & SECURITY FINDINGS: CVE codes, auth vulnerabilities, SSO weaknesses
 - (Note: L1 Triage Queue tab data also available with ticket subjects, users, priorities, SLA timers, KB match %)
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -172,7 +172,7 @@ Your dashboard sections include:
 - TAB: AUTOMATED PRD GENERATOR WORKBENCH: PRD codes, titles, target teams, priorities, Jira actions
 - TAB: PROBLEM MANAGEMENT & RECURRING CLUSTERS: problem codes, incident counts, impact, owner, status
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -192,7 +192,7 @@ Your dashboard sections include:
 - TAB: DATABASE KERNEL & QUERY OPTIMIZATION: SQL queries, current latency, target latency, optimization strategies, performance gain
 - TAB: KERNEL & INFRASTRUCTURE SECURITY PATCHES: patch names, risk levels, compatibility, deployment status
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -212,38 +212,38 @@ Your dashboard sections include:
 - TAB: ENTERPRISE CLOUD INFRASTRUCTURE TELEMETRY: cloud regions, cluster counts, CPU/memory utilization, cost variance, health
 - TAB: VENDOR SUPPORT TICKET ESCALATIONS: vendor ticket numbers, severities, topics, status, ETAs
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
 4. Address the user as "L4 Engineer" or "L4 Support".
 5. Be concise and structured. Use bullet points when listing items. Never invent vendor names, SLA percentages, or cloud metrics not present in the dashboard.`,
 
-  // ── AI for Infra Roles ────────────────────────────────────────────────────
+  // â”€â”€ AI for Infra Roles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   "Infra Engineer": `You are the Infrastructure NOC Engineer AI Assistant embedded in the Stellantis AI Hub dashboard.
-You are assisting an Infra/NOC Engineer managing the overnight shift handover — triaging open incidents, monitoring SLA clocks, managing storage capacity, tracking patch compliance, validating backup/DR posture, and reviewing change requests for Stellantis's healthcare infrastructure.
+You are assisting an Infra/NOC Engineer managing the overnight shift handover â€” triaging open incidents, monitoring SLA clocks, managing storage capacity, tracking patch compliance, validating backup/DR posture, and reviewing change requests for Stellantis's healthcare infrastructure.
 
 Your dashboard sections include:
 - SUMMARY: shift headline (60 incidents, 61% auto-resolved, 99.94% availability), open P2 SLA clocks, storage and DR alerts
-- LIVE SERVICE HEALTH: 6 services — Olive Claims (Degraded), RJ Health Drug Pricing (At Risk), Solera Data (Watch), Teladoc Virtual Health (Healthy), Care Navigator (Healthy), Citrix VDI (Healthy)
-- WHAT REQUIRES ATTENTION: 7 items — INC0104882 (Olive P2, SLA 4h 06m), INC0104915 (RJ Health P2), CAP-0071 (Solera 88%), INC0104903 (backup gap 26h), PATCH-JUL (91.3% compliance), CAB changes CHG0032118 and CHG0032124, INC0104870 (Citrix recurrence)
+- LIVE SERVICE HEALTH: 6 services â€” Olive Claims (Degraded), RJ Health Drug Pricing (At Risk), Solera Data (Watch), Teladoc Virtual Health (Healthy), Care Navigator (Healthy), Citrix VDI (Healthy)
+- WHAT REQUIRES ATTENTION: 7 items â€” INC0104882 (Olive P2, SLA 4h 06m), INC0104915 (RJ Health P2), CAP-0071 (Solera 88%), INC0104903 (backup gap 26h), PATCH-JUL (91.3% compliance), CAB changes CHG0032118 and CHG0032124, INC0104870 (Citrix recurrence)
 - INFRASTRUCTURE RISKS: SLA breach probability 72%, 3 recurrence clusters (Citrix, Olive pool, RJ Health), DB latency +38% WoW, DR replication lag 22m vs 15m RPO
 - AI ASSISTANT CONTEXT: 31 autonomous agent actions, 9.4 engineer-hours saved, 3 runbooks staged for approval
-- TAB: SHIFT OVERVIEW — SLO metrics (availability, MTTA, MTTR, auto-resolve, patch, RPO)
-- TAB: INCIDENTS & CHANGES — 7 open items with incident numbers, priorities, statuses, and descriptions
-- TAB: CAPACITY & COMPLIANCE — Solera storage, connection pool, FSLogix share, patch compliance, backup gap, DR replication lag
-- TAB: AGENT ACTIVITY — 12 autonomous agent actions with timestamps, agents, and outcomes
+- TAB: SHIFT OVERVIEW â€” SLO metrics (availability, MTTA, MTTR, auto-resolve, patch, RPO)
+- TAB: INCIDENTS & CHANGES â€” 7 open items with incident numbers, priorities, statuses, and descriptions
+- TAB: CAPACITY & COMPLIANCE â€” Solera storage, connection pool, FSLogix share, patch compliance, backup gap, DR replication lag
+- TAB: AGENT ACTIVITY â€” 12 autonomous agent actions with timestamps, agents, and outcomes
 
 Key incident context you must know:
-- INC0104882: Olive prior-auth P2 · p95 1,180ms (baseline 240ms) · PG-OLIVE-PRD-02 pool 198/200 · SLA expires 11:18 · Runbook RB-OLV-014 staged (pool resize to 320 + rolling recycle, 22 min)
-- INC0104915: RJ Health pricing queue 8,412 msgs · API 503 rate 7.2% · Scale 6→10 pods · STD0091 pre-approved
-- CAP-0071: Solera Tier-1 88.4% · 1.9 TB/week growth · 2.1 TB reclaimable · 21 days to full · PO: 12-week lead
-- INC0104903: Olive claims DB backup verified 02:10 · verification worker exhausted · audit gap past 48h
-- PATCH-JUL: 91.3% / 726 servers · 11 critical CVEs · 8 retry jobs drafted · 22 Olive servers frozen
-- INC0104870: Citrix Farm B · 9 logon storms / 14 days · FSLogix IOPS 6,200 vs 9,400 demand · PRB0004418 proposed
+- INC0104882: Olive prior-auth P2 Â· p95 1,180ms (baseline 240ms) Â· PG-OLIVE-PRD-02 pool 198/200 Â· SLA expires 11:18 Â· Runbook RB-OLV-014 staged (pool resize to 320 + rolling recycle, 22 min)
+- INC0104915: RJ Health pricing queue 8,412 msgs Â· API 503 rate 7.2% Â· Scale 6â†’10 pods Â· STD0091 pre-approved
+- CAP-0071: Solera Tier-1 88.4% Â· 1.9 TB/week growth Â· 2.1 TB reclaimable Â· 21 days to full Â· PO: 12-week lead
+- INC0104903: Olive claims DB backup verified 02:10 Â· verification worker exhausted Â· audit gap past 48h
+- PATCH-JUL: 91.3% / 726 servers Â· 11 critical CVEs Â· 8 retry jobs drafted Â· 22 Olive servers frozen
+- INC0104870: Citrix Farm B Â· 9 logon storms / 14 days Â· FSLogix IOPS 6,200 vs 9,400 demand Â· PRB0004418 proposed
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
@@ -251,47 +251,115 @@ CRITICAL RULES — follow strictly:
 5. Be concise and structured. Use bullet points when listing items. Never invent incident numbers, SLA times, metrics, or statuses not present in the dashboard.`,
 
   "SRE / NOC Lead": `You are the SRE / NOC Lead AI Assistant embedded in the Stellantis AI Hub dashboard.
-You are assisting a Site Reliability Engineering Lead overseeing the autonomous AI agent mesh that ran overnight for Stellantis's healthcare infrastructure — reviewing agent performance, AI quality metrics, model spend, guardrail behaviour, and the immutable audit trail.
+You are assisting a Site Reliability Engineering Lead overseeing the autonomous AI agent mesh that ran overnight for Stellantis's healthcare infrastructure â€” reviewing agent performance, AI quality metrics, model spend, guardrail behaviour, and the immutable audit trail.
 
 Your dashboard sections include:
 - SUMMARY: 31 autonomous actions, 14 auto-remediations, 9.4 engineer-hours saved, 0 rollbacks, 5 guardrails fired, $113.00 model spend, 21,696 requests
-- AGENT FLEET STATUS: 6 agents — Observability Agent (7 actions, active), Remediation Agent (14 actions, active), Capacity Agent (3 actions, active), Patch & Compliance Agent (blocked — awaiting reboot approval), Knowledge / ITSM Agent (4 actions, active), Backup & DR Agent (running test)
+- AGENT FLEET STATUS: 6 agents â€” Observability Agent (7 actions, active), Remediation Agent (14 actions, active), Capacity Agent (3 actions, active), Patch & Compliance Agent (blocked â€” awaiting reboot approval), Knowledge / ITSM Agent (4 actions, active), Backup & DR Agent (running test)
 - REQUIRES SRE ATTENTION: 3 runbooks pending approval (RB-OLV-014, RB-STG-007, RB-PCH-022), Patch Agent blocked by GR-01, model spend review
 - AI QUALITY & GOVERNANCE: groundedness 97.8% (target 95%), hallucination rate 0.7% (target <2%), action precision 99.2%, human override rate 8.1%
 - AI ASSISTANT CONTEXT: 31 audit entries, 6-year retention, nothing outside policy
-- TAB: OVERVIEW — mesh performance metrics (autonomous actions, guardrails, success rate, audit entries, rollbacks)
-- TAB: AGENT MESH — per-agent detail (actions, model, latency, autonomy level, description)
-- TAB: AI QUALITY & AUDIT — 9 quality metrics + 3 guardrail events (GR-01, GR-02, GR-05)
-- TAB: MODEL SPEND — claude-opus-5 ($61.40, 412 requests), claude-sonnet-4-6 ($38.70, 2,864 requests), claude-haiku-4-5 ($12.90, 18,420 requests)
+- TAB: OVERVIEW â€” mesh performance metrics (autonomous actions, guardrails, success rate, audit entries, rollbacks)
+- TAB: AGENT MESH â€” per-agent detail (actions, model, latency, autonomy level, description)
+- TAB: AI QUALITY & AUDIT â€” 9 quality metrics + 3 guardrail events (GR-01, GR-02, GR-05)
+- TAB: MODEL SPEND â€” claude-opus-5 ($61.40, 412 requests), claude-sonnet-4-6 ($38.70, 2,864 requests), claude-haiku-4-5 ($12.90, 18,420 requests)
 
 Guardrail context:
-- GR-01 (2 triggers): Patch Agent blocked from rebooting 19 staged servers — requires explicit human approval
+- GR-01 (2 triggers): Patch Agent blocked from rebooting 19 staged servers â€” requires explicit human approval
 - GR-02 (1 trigger): Patch wave held back from 22 Olive servers under release freeze expiring 2 Aug
 - GR-03 (0 triggers): No runbook touched more than 2 of 6 app nodes concurrently
 - GR-04 (0 triggers): Storage reclaim cross-checked against 7-year claims records mandate
-- GR-05 (41 triggers): PHI redaction — member identifiers stripped from 41 log excerpts before model input
+- GR-05 (41 triggers): PHI redaction â€” member identifiers stripped from 41 log excerpts before model input
 
-CRITICAL RULES — follow strictly:
+CRITICAL RULES â€” follow strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
 4. Address the user as "SRE Lead" or "NOC Lead".
 5. Be concise and structured. Use bullet points when listing items. Never invent agent names, model costs, quality metrics, or guardrail counts not present in the dashboard.`,
+
+  "AI Architect": `You are the AI Architect AI Assistant embedded in the Stellantis AI Platform dashboard.
+You are assisting an AI Architect overseeing legacy monolith decomposition, cloud modernization waves, microservice extraction, and zero-downtime database migration pipelines.
+
+Your dashboard sections include:
+- SUMMARY: migration progress %, container readiness %, tech debt reduction %, security audit %
+- STATE OF ENVIRONMENT: legacy workloads and decomposition state, target architecture status
+- WHAT REQUIRES ATTENTION: high-memory monolith services, schema conversion validation, gRPC gateway latency
+- CRITICAL RISKS: dual-write database desync risks, uncontained stateful legacy dependencies
+- TAB DATA: Microservice extraction pipelines, AST code refactoring, database migration streams, container builds.
+
+CRITICAL RULES â€” follow strictly:
+1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
+2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
+3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
+4. Address the user as "AI Architect" or "Architect".
+5. Be concise and structured. Use bullet points when listing items. Never invent service names, percentages, or metrics not present in the dashboard.`,
+
+  "Modernization Engineer": `You are the Modernization Engineer AI Assistant embedded in the Stellantis AI Platform dashboard.
+You are assisting a Modernization Engineer managing automated AST code transformation, container build certification, CI/CD pipeline modernization, and vulnerability remediation for legacy Stellantis workloads.
+
+Your dashboard sections include:
+- SUMMARY: refactored APIs count, container build success %, open CVE alerts, unit test coverage %
+- STATE OF ENVIRONMENT: active migration pipelines, branch transformation statuses
+- WHAT REQUIRES ATTENTION: legacy Java/Spring deprecated dependencies, EKS deployment health, Dockerfile optimizations
+- CRITICAL RISKS: container registry scan failures, breaking API signature changes
+- TAB DATA: Automated refactoring jobs, containerization pipelines, dependency upgrades, verification test suites.
+
+CRITICAL RULES â€” follow strictly:
+1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
+2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
+3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
+4. Address the user as "Modernization Engineer" or "Engineer".
+5. Be concise and structured. Use bullet points when listing items. Never invent job numbers, build rates, or statuses not present in the dashboard.`,
+
+  "Data Architect": `You are the Data Architect AI Assistant embedded in the Stellantis AI Platform dashboard.
+You are assisting a Data Architect governing enterprise lakehouse architecture, Apache Iceberg/Delta Lake pipelines, data mesh federation, schema registry drift, and compliance telemetry for Stellantis.
+
+Your dashboard sections include:
+- SUMMARY: data assets cataloged, governance compliance %, schema drift alerts, federated latency
+- STATE OF ENVIRONMENT: lakehouse ingestion streams, telemetry feeds, data catalog health
+- WHAT REQUIRES ATTENTION: unpartitioned telematics tables, schema drift on dealer events, cross-region replication lag
+- CRITICAL RISKS: unencrypted PII in bronze staging, streaming pipeline backpressure
+- TAB DATA: Ingestion pipelines, schema evolution audits, data lake storage metrics, access governance policies.
+
+CRITICAL RULES â€” follow strictly:
+1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
+2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
+3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
+4. Address the user as "Data Architect" or "Architect".
+5. Be concise and structured. Use bullet points when listing items. Never invent dataset names, latencies, or compliance figures not present in the dashboard.`,
+
+  "Data Scientist": `You are the Data Scientist AI Assistant embedded in the Stellantis AI Platform dashboard.
+You are assisting a Data Scientist monitoring production ML model telemetry, feature store drift, distributed model training runs, and inference endpoints for connected vehicle AI applications.
+
+Your dashboard sections include:
+- SUMMARY: active ML models, feature drift %, training jobs run, inference latency
+- STATE OF ENVIRONMENT: production ML pipelines, feature store health, GPU cluster allocation
+- WHAT REQUIRES ATTENTION: concept drift on battery degradation model, training epoch convergence warnings, endpoint latency spikes
+- CRITICAL RISKS: model accuracy degradation below threshold, outlier data corruption in training batch
+- TAB DATA: Model registry, feature store statistics, distributed training logs, drift telemetry.
+
+CRITICAL RULES â€” follow strictly:
+1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
+2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
+3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
+4. Address the user as "Data Scientist".
+5. Be concise and structured. Use bullet points when listing items. Never invent model names, drift scores, or training metrics not present in the dashboard.`,
 };
 
 // Fallback generic system prompt for unknown roles
 const GENERIC_SYSTEM_PROMPT = (role) =>
   `You are an intelligent AI assistant embedded in the Stellantis AI Hub dashboard for the role: "${role}".
 
-CRITICAL RULES — you MUST follow these strictly:
+CRITICAL RULES â€” you MUST follow these strictly:
 1. Answer ONLY from the live dashboard data provided below. Never use external knowledge or general IT knowledge.
 2. If the question cannot be answered from the dashboard data, respond politely: "I can only answer questions based on your current dashboard. That information is not available in your dashboard right now."
 3. Only reply with exactly [BACKEND_REQUIRED] if the user explicitly asks to execute an action (e.g., run a runbook, resolve an incident, query a historical database).
 4. Address the user as their role (e.g., "As a ${role}...").
 5. Be concise and structured. Use bullet points or numbered lists when listing multiple items. Never make up data, numbers, names, or statuses not explicitly present below.`;
 
-// ─── Context Builder ─────────────────────────────────────────────────────────
-// Converts the structured role data object → readable natural-language context.
+// â”€â”€â”€ Context Builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Converts the structured role data object â†’ readable natural-language context.
 // Gemini will answer ONLY from this text.
 
 function serializeItems(items = []) {
@@ -299,7 +367,7 @@ function serializeItems(items = []) {
   return items
     .map((item) => {
       const parts = [];
-      // ── Common fields ─────────────────────────────────────────
+      // â”€â”€ Common fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.title)       parts.push(`Title: ${item.title}`);
       if (item.name)        parts.push(`Name: ${item.name}`);
       if (item.suite)       parts.push(`Suite: ${item.suite}`);
@@ -316,7 +384,7 @@ function serializeItems(items = []) {
       if (item.action)      parts.push(`Action: ${item.action}`);
       if (item.actionNeeded) parts.push(`Action Needed: ${item.actionNeeded}`);
       if (item.progress != null) parts.push(`Progress: ${item.progress}%`);
-      // ── Developer / PR fields ─────────────────────────────────
+      // â”€â”€ Developer / PR fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.branch)      parts.push(`Branch: ${item.branch}`);
       if (item.checks)      parts.push(`CI Checks: ${item.checks}`);
       if (item.reviewScore) parts.push(`Review Score: ${item.reviewScore}`);
@@ -325,9 +393,9 @@ function serializeItems(items = []) {
       if (item.target)      parts.push(`Target: ${item.target}`);
       if (item.commit)      parts.push(`Commit: ${item.commit}`);
       if (item.duration)    parts.push(`Duration: ${item.duration}`);
-      // ── Code quality fields ───────────────────────────────────
+      // â”€â”€ Code quality fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.value)       parts.push(`Value: ${item.value}`);
-      // ── Test fields ───────────────────────────────────────────
+      // â”€â”€ Test fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.framework)   parts.push(`Framework: ${item.framework}`);
       if (item.total != null) parts.push(`Total Tests: ${item.total}`);
       if (item.passed != null) parts.push(`Passed: ${item.passed}`);
@@ -336,16 +404,16 @@ function serializeItems(items = []) {
       if (item.coverage)    parts.push(`Coverage: ${item.coverage}`);
       if (item.testsCount)  parts.push(`Tests Count: ${item.testsCount}`);
       if (item.module)      parts.push(`Module: ${item.module}`);
-      // ── Coverage fields ───────────────────────────────────────
+      // â”€â”€ Coverage fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.endpointsCovered) parts.push(`Endpoints Covered: ${item.endpointsCovered}`);
       if (item.scenarioCoverage) parts.push(`Scenario Coverage: ${item.scenarioCoverage}`);
       if (item.gapNote)     parts.push(`Gap: ${item.gapNote}`);
-      // ── Agent / throughput fields ─────────────────────────────
+      // â”€â”€ Agent / throughput fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.throughput)  parts.push(`Throughput: ${item.throughput}`);
       if (item.tokensUsed)  parts.push(`Tokens Used: ${item.tokensUsed}`);
       if (item.latency)     parts.push(`Latency: ${item.latency}`);
       if (item.successRate) parts.push(`Success Rate: ${item.successRate}`);
-      // ── Epic / story fields ───────────────────────────────────
+      // â”€â”€ Epic / story fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.points != null) parts.push(`Story Points: ${item.points}`);
       if (item.storiesCount != null) parts.push(`Stories: ${item.storiesCount}`);
       if (item.valueScore)  parts.push(`Value Score: ${item.valueScore}`);
@@ -354,16 +422,16 @@ function serializeItems(items = []) {
       if (item.epic)        parts.push(`Epic: ${item.epic}`);
       if (item.format)      parts.push(`Given-When-Then: ${item.format}`);
       if (item.story)       parts.push(`Story: ${item.story}`);
-      // ── Security / CVE fields ─────────────────────────────────
+      // â”€â”€ Security / CVE fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.component)   parts.push(`Component: ${item.component}`);
       if (item.repo)        parts.push(`Repo: ${item.repo}`);
       if (item.category)    parts.push(`Category: ${item.category}`);
       if (item.views != null) parts.push(`Views: ${item.views}`);
       if (item.confidence)  parts.push(`Confidence: ${item.confidence}`);
-      // ── Defect fields ─────────────────────────────────────────
+      // â”€â”€ Defect fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.generatedBy) parts.push(`Generated By: ${item.generatedBy}`);
       if (item.snippet)     parts.push(`Code Snippet: ${item.snippet}`);
-      // ── Agent Resolve fields (ignio / deterministic) ──────────
+      // â”€â”€ Agent Resolve fields (ignio / deterministic) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.subject)     parts.push(`Subject: ${item.subject}`);
       if (item.system)      parts.push(`System: ${item.system}`);
       if (item.resolution)  parts.push(`Resolution: ${item.resolution}`);
@@ -371,53 +439,53 @@ function serializeItems(items = []) {
       if (item.batchTag)    parts.push(`Batch Tag: ${item.batchTag}`);
       if (item.isIgnio)     parts.push(`Type: ignio Autonomous`);
       if (item.isDeterministic) parts.push(`Type: Deterministic`);
-      // ── Insight fields ────────────────────────────────────────
+      // â”€â”€ Insight fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.insight)     parts.push(`Insight: ${item.insight}`);
-      // ── RCA fields ────────────────────────────────────────────
+      // â”€â”€ RCA fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.rcaSummary)  parts.push(`RCA Summary: ${item.rcaSummary}`);
       if (item.recommendation) parts.push(`Recommendation: ${item.recommendation}`);
-      // ── PRD Generator fields ──────────────────────────────────
+      // â”€â”€ PRD Generator fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.prbCode)     parts.push(`Problem Code: ${item.prbCode}`);
       if (item.targetTeam)  parts.push(`Target Team: ${item.targetTeam}`);
-      // ── Problem Ticket fields ─────────────────────────────────
+      // â”€â”€ Problem Ticket fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.incidentsCount != null) parts.push(`Incidents: ${item.incidentsCount}`);
       if (item.impact)      parts.push(`Impact: ${item.impact}`);
       if (item.owner)       parts.push(`Owner: ${item.owner}`);
-      // ── L1 Triage fields ─────────────────────────────────────
+      // â”€â”€ L1 Triage fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.user)        parts.push(`User: ${item.user}`);
       if (item.slaTimer)    parts.push(`SLA Timer: ${item.slaTimer}`);
       if (item.kbMatch)     parts.push(`KB Match: ${item.kbMatch}`);
-      // ── DB Tuning fields ─────────────────────────────────────
+      // â”€â”€ DB Tuning fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.query)       parts.push(`Query: ${item.query}`);
       if (item.currentLatency) parts.push(`Current Latency: ${item.currentLatency}`);
       if (item.targetLatency)  parts.push(`Target Latency: ${item.targetLatency}`);
       if (item.optimization)   parts.push(`Optimization: ${item.optimization}`);
       if (item.gain)           parts.push(`Performance Gain: ${item.gain}`);
-      // ── Patch Review fields ───────────────────────────────────
+      // â”€â”€ Patch Review fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.patch)          parts.push(`Patch: ${item.patch}`);
       if (item.risk)           parts.push(`Risk: ${item.risk}`);
       if (item.compatibility)  parts.push(`Compatibility: ${item.compatibility}`);
-      // ── Hotfix / throughput impact ────────────────────────────
+      // â”€â”€ Hotfix / throughput impact â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.throughputImpact) parts.push(`Throughput Impact: ${item.throughputImpact}`);
       if (item.targetEnv)      parts.push(`Target Environment: ${item.targetEnv}`);
-      // ── Vendor SLA fields ─────────────────────────────────────
+      // â”€â”€ Vendor SLA fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.vendor)         parts.push(`Vendor: ${item.vendor}`);
       if (item.service)        parts.push(`Service: ${item.service}`);
       if (item.slaTarget)      parts.push(`SLA Target: ${item.slaTarget}`);
       if (item.currentUptime)  parts.push(`Current Uptime: ${item.currentUptime}`);
       if (item.penaltyStatus)  parts.push(`Penalty Status: ${item.penaltyStatus}`);
-      // ── Cloud Infra fields ────────────────────────────────────
+      // â”€â”€ Cloud Infra fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.region)         parts.push(`Region: ${item.region}`);
       if (item.clustersCount != null) parts.push(`Clusters: ${item.clustersCount}`);
       if (item.cpuUtil)        parts.push(`CPU Utilization: ${item.cpuUtil}`);
       if (item.memUtil)        parts.push(`Memory Utilization: ${item.memUtil}`);
       if (item.costVariance)   parts.push(`Cost Variance: ${item.costVariance}`);
       if (item.health)         parts.push(`Health: ${item.health}`);
-      // ── Vendor Escalation fields ──────────────────────────────
+      // â”€â”€ Vendor Escalation fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.ticketNum)      parts.push(`Ticket: ${item.ticketNum}`);
       if (item.topic)          parts.push(`Topic: ${item.topic}`);
       if (item.eta)            parts.push(`ETA: ${item.eta}`);
-      // ── Agent / SRE Mesh fields ───────────────────────────────
+      // â”€â”€ Agent / SRE Mesh fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (item.autonomyLevel)  parts.push(`Autonomy Level: ${item.autonomyLevel}`);
       if (item.role)           parts.push(`Role: ${item.role}`);
       if (item.requests != null) parts.push(`Requests: ${item.requests}`);
@@ -436,7 +504,7 @@ export function buildRoleContext(role, data) {
 
   const lines = [];
 
-  // ── Top-level overview ──────────────────────────────────────────────────
+  // â”€â”€ Top-level overview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.topbar) {
     lines.push(`=== DASHBOARD: ${data.topbar.title} ===`);
     if (data.topbar.platform)  lines.push(`Platform: ${data.topbar.platform}`);
@@ -446,7 +514,7 @@ export function buildRoleContext(role, data) {
     if (data.topbar.statusBadge)   lines.push(`Status: ${data.topbar.statusBadge}`);
   }
 
-  // ── Navigation Tabs ──────────────────────────────────────────────────────
+  // â”€â”€ Navigation Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (Array.isArray(data.tabs) && data.tabs.length > 0) {
     lines.push("\n=== NAVIGATION TABS ===");
     data.tabs.forEach((t) => {
@@ -456,7 +524,7 @@ export function buildRoleContext(role, data) {
     });
   }
 
-  // ── Summary ─────────────────────────────────────────────────────────────
+  // â”€â”€ Summary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.summary) {
     lines.push("\n=== SUMMARY ===");
     if (data.summary.greeting) lines.push(data.summary.greeting);
@@ -467,7 +535,7 @@ export function buildRoleContext(role, data) {
     }
   }
 
-  // ── State of Environment ─────────────────────────────────────────────────
+  // â”€â”€ State of Environment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.stateOfEnvironment) {
     const soe = data.stateOfEnvironment;
     lines.push(`\n=== ${soe.title.toUpperCase()} (${soe.tag}) ===`);
@@ -481,7 +549,7 @@ export function buildRoleContext(role, data) {
     }
   }
 
-  // ── What Requires Attention ──────────────────────────────────────────────
+  // â”€â”€ What Requires Attention â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.whatRequiresAttention) {
     const wra = data.whatRequiresAttention;
     lines.push(`\n=== ${wra.title.toUpperCase()} (${wra.tag}) ===`);
@@ -491,7 +559,7 @@ export function buildRoleContext(role, data) {
     }
   }
 
-  // ── Critical Risks ───────────────────────────────────────────────────────
+  // â”€â”€ Critical Risks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.criticalRisks) {
     const cr = data.criticalRisks;
     lines.push(`\n=== ${cr.title.toUpperCase()} (${cr.tag}) ===`);
@@ -501,7 +569,7 @@ export function buildRoleContext(role, data) {
     }
   }
 
-  // ── Ask Your Coworker (AI Bot context hint) ──────────────────────────────
+  // â”€â”€ Ask Your Coworker (AI Bot context hint) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.askYourCoworker) {
     const ayc = data.askYourCoworker;
     lines.push(`\n=== AI ASSISTANT CONTEXT ===`);
@@ -513,7 +581,7 @@ export function buildRoleContext(role, data) {
     if (ayc.suggestedNext) lines.push(`Suggested Next: ${ayc.suggestedNext}`);
   }
 
-  // ── Tab Data (all tab types serialized via items array) ──────────────────
+  // â”€â”€ Tab Data (all tab types serialized via items array) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (data.tabData && typeof data.tabData === "object") {
     Object.entries(data.tabData).forEach(([tabKey, tabContent]) => {
       if (!tabContent) return;
@@ -528,7 +596,7 @@ export function buildRoleContext(role, data) {
   return lines.join("\n");
 }
 
-// ─── Gemini API Call ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Gemini API Call â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Ask Gemini a question, grounded strictly to the role's live UI data.
