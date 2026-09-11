@@ -2,7 +2,6 @@
 // Users with these emails have Super Admin platform access across all Business Areas & Settings
 
 export const SUPER_ADMIN_EMAILS = [
-  'ram.varikuti@tcs.com',
   'saikiran.gutta@tcs.com',
   'surabhi.pavankumar@tcs.com',
   'lavanya.tetakali@tcs.com',
