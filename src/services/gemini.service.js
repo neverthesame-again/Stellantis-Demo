@@ -608,9 +608,8 @@ export function buildRoleContext(role, data) {
  * @returns {Promise<string>}   - Gemini's answer text
  */
 export async function askGemini(role, data, question, history = []) {
-  const apiKey =
-    (typeof window !== "undefined" && window.VITE_GEMINI_API_KEY) ||
-    (import.meta.env && import.meta.env.VITE_GEMINI_API_KEY);
+  // Key is read only from Vite env — never from window to prevent XSS exposure
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey || apiKey === "your_gemini_api_key_here") {
     throw new Error(
@@ -660,18 +659,20 @@ ${context}
     ],
   };
 
-  let response = await fetch(`${GEMINI_PRIMARY_URL}?key=${apiKey}`, {
+  // Key is sent in the x-goog-api-key header instead of the URL query string
+  // to prevent it appearing in network logs, server access logs, and browser history
+  let response = await fetch(GEMINI_PRIMARY_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
     body: JSON.stringify(requestBody),
   });
 
   // Fallback to Gemini 3.5 Flashlite if primary fails
   if (!response.ok) {
     console.warn(`Primary Gemini 3.1 failed (${response.status}), falling back to 3.5 Flashlite...`);
-    response = await fetch(`${GEMINI_FALLBACK_URL}?key=${apiKey}`, {
+    response = await fetch(GEMINI_FALLBACK_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
       body: JSON.stringify(requestBody),
     });
 

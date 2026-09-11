@@ -235,10 +235,9 @@ export function UnifiedBotWidget({ selectedRole, data, domain, onOpenChange, hid
   const backendSessionIdRef = useRef("unified-session-" + Date.now());
 
   const callBackendAgent = async (messageText) => {
-    const DEFAULT_API_URL =
-      (typeof window !== "undefined" && window.VITE_CHATBOT_AGENT_API_URL) ||
-      (import.meta.env && import.meta.env.VITE_CHATBOT_AGENT_API_URL) ||
-      "https://iscbfcgkfmzswnmarlbe.supabase.co/functions/v1/chatbot-agent";
+    // URL is read only from Vite env — no hardcoded fallback to prevent project ID exposure in source
+    const DEFAULT_API_URL = import.meta.env.VITE_CHATBOT_AGENT_API_URL;
+    if (!DEFAULT_API_URL) throw new Error("VITE_CHATBOT_AGENT_API_URL is not configured in .env");
 
     const response = await fetch(DEFAULT_API_URL, {
       method: "POST",
