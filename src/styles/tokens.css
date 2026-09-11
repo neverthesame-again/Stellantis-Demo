@@ -1,12 +1,9 @@
-/* Design Tokens - AI Hub
+/* Design Tokens - Stellantis AI Hub
  * ─────────────────────────────────────────────────────────────────────────
  * ALL colors live here. Components must use var(--token) — never hex codes.
- * To change both themes: only edit this file.
- *
- * LIGHT THEME is sourced from the Reliability Engineer Assist reference
- * (index.html): navy #10214c / #142654, action blue #245be8, page #f4f6fb,
- * card #ffffff, hairline #d7deea, ink #162033, muted #657184.
- * Badge / status / category tag colors are intentionally UNCHANGED.
+ * Sourced from Stellantis global digital brand design language:
+ * Deep Stellantis Navy #162057 / #0a1c3f, action blue #245be8 / #0072ce,
+ * page #f5f7fa, crisp cards, high-contrast typography, and constellation accents.
  * ─────────────────────────────────────────────────────────────────────────
  */
 
@@ -207,29 +204,29 @@
   --navy3: #eef2f8;
   /* recessed panel, foot of page gradient  */
 
-  --blue: #002d54;
-  /* deepest unum navy — headings, text     */
-  --blue2: #004b87;
-  /* UNUM logo brand blue — primary buttons */
-  --blue3: #005fa8;
+  --blue: #0a1c3f;
+  /* deepest Stellantis navy — headings, text     */
+  --blue2: #162057;
+  /* Stellantis brand blue — primary buttons */
+  --blue3: #243882;
   /* accent lifted — hover on solid blue    */
-  --blue4: #003b6d;
+  --blue4: #0f173d;
   /* accent pressed — active state          */
-  --blue5: #002544;
+  --blue5: #071026;
   /* chip / pill navy                       */
-  --cyan: #004b87;
-  /* UNUM blue                              */
-  --cyan2: #005fa8;
+  --cyan: #162057;
+  /* Stellantis blue                        */
+  --cyan2: #243882;
   --gold: #f2aa22;
   /* index --warning                        */
 
   /* RGB tuples for rgba() — must track the hex values above */
-  --blue2-rgb: 0, 75, 135;
-  --cyan-rgb: 0, 75, 135;
-  --cyan-glow-rgb: 0, 75, 135;
+  --blue2-rgb: 22, 32, 87;
+  --cyan-rgb: 22, 32, 87;
+  --cyan-glow-rgb: 36, 56, 130;
   --gold-rgb: 242, 170, 34;
   --white-rgb: 255, 255, 255;
-  --navy-rgb: 0, 45, 84;
+  --navy-rgb: 10, 28, 63;
 
   /* ── Semantic Surface ── */
   --surface-page: var(--page-bg);

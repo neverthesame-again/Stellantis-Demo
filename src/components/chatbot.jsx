@@ -257,7 +257,7 @@ export function Chatbot({ hideFloat, autoPrompt, defaultOpen = false }) {
           className="centene-chat-float"
           data-theme="dark"
           onClick={open}
-          title="Open UNUM AI Hub Assistant"
+          title="Open Stellantis AI Hub Assistant"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h8c1.1 0 2-.9 2-2v-8c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8v8h-8z" />
@@ -283,7 +283,7 @@ export function Chatbot({ hideFloat, autoPrompt, defaultOpen = false }) {
               <circle cx="15.5" cy="12" r="1.5" />
             </svg>
             <div className="centene-chat-title">
-              <div>UNUM AI Hub Agent</div>
+              <div>Stellantis AI Hub Agent</div>
               <div className="centene-chat-subtitle">IT Operations Assistant</div>
             </div>
           </div>

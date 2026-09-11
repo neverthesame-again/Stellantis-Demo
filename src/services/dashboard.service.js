@@ -62,7 +62,7 @@ export const dashboardService = {
   getDashboardContent: () => {
     return {
       badge: "Welcome back, User",
-      title: "One UNUM AI",
+      title: "One Stellantis AI",
       subtitle:
         "Understands intent, Engages AI and humans — Select a domain to explore",
     };
