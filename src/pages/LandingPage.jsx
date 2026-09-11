@@ -3326,19 +3326,35 @@ export default function LandingPage() {
         />
       )}
 
-      {/* SEL Nexus Floating Button & Popups for L3 & L4 Support Engineer, or Developer / Product Owner in AI for AD */}
-      {(selectedRole === "L3 Support Engineer" ||
+      {/* SEL Nexus / AMS Nexus Floating Button & Popups */}
+      {((selectedArea === "AI for AMS" && selectedRole === "Support Engineer") ||
+        selectedRole === "Support Engineer" ||
+        selectedRole === "L3 Support Engineer" ||
         selectedRole === "L4 Support Engineer" ||
         (selectedArea === "AI for AD" && (selectedRole === "Developer" || selectedRole === "Product Owner"))) && (
           <>
             {!selNexusOpen && (
               <div
                 className="sel-nexus-float"
-                onClick={() => setSelNexusOpen(true)}
-                title="Open SEL Nexus Autonomous Pipeline"
+                onClick={() => {
+                  if (selectedArea === "AI for AMS" || selectedRole === "Support Engineer") {
+                    window.open("https://ams.sel-nexus.com/", "_blank", "noopener,noreferrer");
+                  } else {
+                    setSelNexusOpen(true);
+                  }
+                }}
+                title={
+                  (selectedArea === "AI for AMS" || selectedRole === "Support Engineer")
+                    ? "Open AMS Nexus"
+                    : "Open SEL Nexus Autonomous Pipeline"
+                }
               >
                 <Icon name="zap" size={18} />
-                <span>SEL Nexus</span>
+                <span>
+                  {(selectedArea === "AI for AMS" || selectedRole === "Support Engineer")
+                    ? "AMS Nexus"
+                    : "SEL Nexus"}
+                </span>
               </div>
             )}
 
