@@ -72,7 +72,7 @@ export default function HomePage() {
                 </div>
                 <div className="browser-url">
                   <span className="url-lock">🔒</span>
-                  <span>unum/dashboard</span>
+                  <span>stellantis/dashboard</span>
                 </div>
               </div>
               <div className="browser-content">
@@ -88,7 +88,7 @@ export default function HomePage() {
                       }}
                     />
                     <span style={{ fontSize: "10px", fontWeight: "700" }}>
-                      UNUM AI HUB
+                      STELLANTIS AI HUB
                     </span>
                   </div>
                 </div>
